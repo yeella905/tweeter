@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    background-color: #4056A1;
+    color: #FFFFFF;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 1.5em; /* Add top padding */
+    padding-bottom: 1em; /* Add bottom padding */
+    box-sizing: border-box; /* ensures padding doesn't affect width */
+}
+
+nav span {
+    font-family: 'Bungee', sans-serif;
+}
+
+nav .new-tweet {
+    display: flex; /* Aligns "Write a new tweet" and icon horizontally */
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers items horizontally */
+    font-family: 'Source Sans 3', sans-serif !important;
+    line-height: 1.2; /* Adjust spacing between lines */
+}
+
+nav .new-tweet i {
+    color: red;
+    margin-top: 0.5em; /* Adds space between text and icon */
+    margin-left: 0; /* Remove any left margin set before */
+}
