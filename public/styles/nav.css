@@ -11,6 +11,8 @@ nav {
     padding-top: 1.5em; /* Add top padding */
     padding-bottom: 1em; /* Add bottom padding */
     box-sizing: border-box; /* ensures padding doesn't affect width */
+    top: 0;
+    position: fixed;
 }
 
 nav span {

@@ -1,0 +1,9 @@
+header {
+    display: flex;
+    justify-content: centre;
+    align-items: center;
+    width: 100%;
+    background-color: #db9730;
+    background-image:  url(always-grey.png);
+
+}
