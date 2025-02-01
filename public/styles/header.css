@@ -1,9 +1,11 @@
 header {
     display: flex;
-    justify-content: centre;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 400px;
     width: 100%;
     background-color: #db9730;
-    background-image:  url(always-grey.png);
+    background-image:  url(/images/always-grey.png);
 
 }
