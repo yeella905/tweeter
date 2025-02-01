@@ -29,5 +29,5 @@ body {
  main {
   width: 90%;
   margin: 0 auto; /* This centers the main element horizontally */
-  background-color: cornsilk; /* Same as body background color */
+  background-color: inherit; /* Same as body background color just won't be hardcoded */ 
 }
