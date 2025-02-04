@@ -1,4 +1,5 @@
 article.tweet {
+    padding-top: 10px;
     border: 3px solid; /* Add a border color if needed */
     
 }
@@ -7,6 +8,7 @@ article.tweet:hover {
     box-shadow: 3px 3px 5px #687294; /* Correct syntax */   
     border: 3px solid; 
     cursor: pointer;
+    transition: all 0.3s ease;
   }
 
 article.tweet header .user-info {
@@ -36,5 +38,5 @@ footer {
 }
 
 .tweet-icons i:hover {
-    color: blue
+    color: #4056A1;
 }
