@@ -1,0 +1,40 @@
+article.tweet {
+    border: 3px solid; /* Add a border color if needed */
+    
+}
+
+article.tweet:hover {
+    box-shadow: 3px 3px 5px #687294; /* Correct syntax */   
+    border: 3px solid; 
+    cursor: pointer;
+  }
+
+article.tweet header .user-info {
+    display: flex;
+    justify-content: flex-start; /* Align to the start for the avatar and name */
+    align-items: center;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.user-info i {
+    margin-right: 10px; /* Space between the avatar and the name */
+    
+}
+
+p.paragraph{
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between; /* Align to the start for the avatar and name */
+    align-items: center;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.tweet-icons i:hover {
+    color: red
+}

@@ -1,11 +1,11 @@
-header {
+header.main-header {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 400px;
     width: 100%;
-    background-color: #db9730;
+    background-color: #c7cbd3;
     background-image:  url(/images/always-grey.png);
 
 }
