@@ -22,7 +22,7 @@ article.tweet header .user-info {
     
 }
 
-p.paragraph{
+p.text{
     margin-left: 12px;
     margin-right: 12px;
 }
@@ -36,5 +36,5 @@ footer {
 }
 
 .tweet-icons i:hover {
-    color: red
+    color: blue
 }
