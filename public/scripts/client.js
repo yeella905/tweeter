@@ -59,15 +59,16 @@ return $tweet;
 }
 
 
-  const loadtweets = function() {
-   $.ajax({
+const loadtweets = function() {
+  $.ajax({
     url:"/tweets",
     type:"GET",
-    success:function(res){
+    }).done(function(res) {
         renderTweets(res);
-    }
-   })
-  }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(`Error fetching tweets: ${textStatus}, ${errorThrown}`);
+  });
+}
 
   const renderTweets = function(data) {
         for (let tweet in data) {
