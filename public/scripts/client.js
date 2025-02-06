@@ -18,6 +18,7 @@ const createTweetHeader = function(user) {
     headerdiv.append(name);
     header.append(headerdiv);
     return header;
+    
 }
 
 const createTweetFooter = function(day) {
@@ -72,28 +73,24 @@ const loadtweets = function() {
 
   const renderTweets = function(data) {
         for (let tweet in data) {
-            $('#tweets-container').append(createTweetElement(data[tweet]));
+            $('#tweets-container').prepend(createTweetElement(data[tweet]));
         }
   }
   
   $(document).ready(function() { //when the dom is loaded find the ID tweet container and append the new created tweet
     // Test / driver code (temporary)
-     loadtweets()
+    // Main function to handle DOM when ready
+     loadtweets();
     // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+     // Handle form submission
     $( "#target" ).on( "submit", function( event ) {
         event.preventDefault();
 
-    var tweetContent = $(this).find('textarea').val(); // Assuming you have a <textarea> inside the form for tweets
-
-        // Validation logic
-        if (!tweetContent) {
-            alert("Your tweet cannot be empty.");
-        return;
-        }
-  
-        if (tweetContent.length > 140) {
-            alert("Your tweet is too long. Please keep it within 140 characters.");
-        return;
+        var tweetContent = $(this).find('textarea').val().trim();
+    
+        // Use the validation function
+        if (!validateTweet(tweetContent)) {
+            return; // Stop the function if tweet is invalid
         }
 
     // Serialize the form data
@@ -102,11 +99,38 @@ const loadtweets = function() {
     // Send serialized data using a POST request
     $.post('/tweets', formData, function(response) {
     console.log("Response from server:", response);
+
+     // Fetch and render the updated tweets
+     fetchAndRenderTweets();
         
     // Optionally, call a function to update your tweet list with the new data
     renderTweets([response]);
     });
 
-    alert( "Handler for `submit` called." );
     });
+
+    // Validation FUNCTION
+    function validateTweet(content) {
+        if (!content) {
+            alert("Your tweet cannot be empty.");
+            return false;
+        }
+
+        if (content.length > 140) {
+            alert("Your tweet is too long. Please keep it within 140 characters.");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Function to fetch and render tweets
+    function fetchAndRenderTweets() {
+        fetch('/tweets')
+            .then(response => response.json())
+            .then(data => {
+                renderTweets(data);
+            })
+            .catch(error => console.error('Error fetching tweets:', error));
+        }
 });
