@@ -94,11 +94,26 @@ const data = [
     // takes return value and appends it to the tweets container
   }
 
-
-
-$(document).ready(function() { //when the dom is loaded find the ID tweet container and append the new created tweet
-  // Test / driver code (temporary)
-renderTweets(data) // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-});
-
   
+  
+  $(document).ready(function() { //when the dom is loaded find the ID tweet container and append the new created tweet
+    // Test / driver code (temporary)
+    renderTweets(data); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+    $( "#target" ).on( "submit", function( event ) {
+        event.preventDefault();
+
+    // Serialize the form data
+    var formData = $(this).serialize();
+
+    // Send serialized data using a POST request
+    $.post('/tweets', formData, function(response) {
+    console.log("Response from server:", response);
+        
+    // Optionally, call a function to update your tweet list with the new data
+    renderTweets([response]);
+    });
+    
+        alert( "Handler for `submit` called." );
+        
+       });
+});
