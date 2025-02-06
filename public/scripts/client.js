@@ -103,8 +103,6 @@ const loadtweets = function() {
      // Fetch and render the updated tweets
      fetchAndRenderTweets();
         
-    // Optionally, call a function to update your tweet list with the new data
-    renderTweets([response]);
     });
 
     });
@@ -129,6 +127,7 @@ const loadtweets = function() {
         fetch('/tweets')
             .then(response => response.json())
             .then(data => {
+                $('#tweets-container').empty()
                 renderTweets(data);
             })
             .catch(error => console.error('Error fetching tweets:', error));
