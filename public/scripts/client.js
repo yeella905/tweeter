@@ -83,6 +83,19 @@ const loadtweets = function() {
     $( "#target" ).on( "submit", function( event ) {
         event.preventDefault();
 
+    var tweetContent = $(this).find('textarea').val(); // Assuming you have a <textarea> inside the form for tweets
+
+        // Validation logic
+        if (!tweetContent) {
+            alert("Your tweet cannot be empty.");
+        return;
+        }
+  
+        if (tweetContent.length > 140) {
+            alert("Your tweet is too long. Please keep it within 140 characters.");
+        return;
+        }
+
     // Serialize the form data
     var formData = $(this).serialize();
 
@@ -94,7 +107,6 @@ const loadtweets = function() {
     renderTweets([response]);
     });
 
-        alert( "Handler for `submit` called." );
-        
-       });
+    alert( "Handler for `submit` called." );
+    });
 });
