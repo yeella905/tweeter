@@ -36,8 +36,7 @@ const createTweetFooter = function(day) {
     icon.append(iconHeart);
     footer.append(date);
     footer.append(icon);
-    date.text("Tweet Date");
-
+    date.text($.timeago(day));
     return footer
 }
 
@@ -53,52 +52,33 @@ const tweetContent = $("<p>");
 tweetContent.addClass("text");
 tweetContent.text(tweet.content.text);
 $tweet.append(tweetContent);
-const $footer = createTweetFooter(tweet.user);
+const $footer = createTweetFooter(tweet["created_at"]);
 $tweet.append($footer);
 
 return $tweet;
 }
 
-const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
+
+  const loadtweets = function() {
+   $.ajax({
+    url:"/tweets",
+    type:"GET",
+    success:function(res){
+        renderTweets(res);
     }
-  ]
-
-
-  const renderTweets = function(tweets) {
-    for (let tweet in tweets) {
-        $('#tweets-container').append(createTweetElement(tweets[tweet]));
-
-    }
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
+   })
   }
 
-  
+  const renderTweets = function(data) {
+        for (let tweet in data) {
+            $('#tweets-container').append(createTweetElement(data[tweet]));
+        }
+  }
   
   $(document).ready(function() { //when the dom is loaded find the ID tweet container and append the new created tweet
     // Test / driver code (temporary)
-    renderTweets(data); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+     loadtweets()
+    // to add it to the page so we can make sure it's got all the right elements, classes, etc.
     $( "#target" ).on( "submit", function( event ) {
         event.preventDefault();
 
@@ -112,7 +92,7 @@ const data = [
     // Optionally, call a function to update your tweet list with the new data
     renderTweets([response]);
     });
-    
+
         alert( "Handler for `submit` called." );
         
        });
