@@ -13,6 +13,7 @@ nav {
     box-sizing: border-box; /* ensures padding doesn't affect width */
     top: 0;
     position: fixed;
+    z-index: 10;
 }
 
 nav span {

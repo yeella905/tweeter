@@ -1,7 +1,7 @@
 article.tweet {
-    padding-top: 10px;
     border: 3px solid; /* Add a border color if needed */
-    
+    margin-top: 1em;
+    padding: 1em;
 }
 
 article.tweet:hover {
@@ -11,32 +11,25 @@ article.tweet:hover {
     transition: all 0.3s ease;
   }
 
-article.tweet header .user-info {
+article.tweet header {
     display: flex;
-    justify-content: flex-start; /* Align to the start for the avatar and name */
+    justify-content: space-between;
     align-items: center;
-    margin-left: 12px;
-    margin-right: 12px;
 }
 
-.user-info i {
-    margin-right: 10px; /* Space between the avatar and the name */
-    
+article.tweet header div {
+    display: flex;
+    align-items: center;
 }
 
-p.text{
-    margin-left: 12px;
-    margin-right: 12px;
-}
 
-footer {
+
+article.tweet footer {
     display: flex;
     justify-content: space-between; /* Align to the start for the avatar and name */
     align-items: center;
-    margin-left: 12px;
-    margin-right: 12px;
 }
 
-.tweet-icons i:hover {
+article.tweet footer i:hover {
     color: #4056A1;
 }

@@ -6,6 +6,8 @@
 }
 
 .new-tweet textarea {
+    width: 100%;
+    resize: none;
     display: block; /* Ensure it takes up its own line */
     border: none;
     padding-bottom: 8px; /* Optional: Add some space between the text and border */

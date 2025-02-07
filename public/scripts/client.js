@@ -4,132 +4,97 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Test / driver code (temporary). Eventually will get this from the server.
-// Fake data taken from initial-tweets.json
-const createTweetHeader = function(user) {
-    const header = $("<header>");
-    const name = $("<h2>");
-    const icon = $("<i>");
-    const headerdiv = $("<div>");
-    headerdiv.addClass("user-info")
-    icon.addClass("fa-regular fa-face-smile")
-    name.text(user.name);
-    headerdiv.append(icon);
-    headerdiv.append(name);
-    header.append(headerdiv);
-    return header;
-    
-}
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
-const createTweetFooter = function(day) {
-    const footer = $("<footer>");
-    const date = $("<span>");
-    const icon = $("<span>");
-    const iconReply = $("<i>");
-    const iconRetweet = $("<i>");
-    const iconHeart = $("<i>");
-    icon.addClass("tweet-icons")
-    iconReply.addClass("fa-solid fa-reply");
-    iconRetweet.addClass("fa-solid fa-retweet");
-    iconHeart.addClass("fa-solid fa-heart");
-    icon.append(iconReply);
-    icon.append(iconRetweet);
-    icon.append(iconHeart);
-    footer.append(date);
-    footer.append(icon);
-    date.text($.timeago(day));
-    return footer
-}
+const createTweetElement = (tweet) => {
+  return `
+    <article class="tweet">
+        <header>
+            <div>
+                <img src="${tweet.user.avatars}"/>
+                <span>${tweet.user.name}</span>
+            </div>
+            <p>${tweet.user.handle}</p>
+        </header>
+        <p>${escape(tweet.content.text)}</p>
+        <footer>
+            <p>${timeago().format(tweet.created_at)}</p>
+            <div>
+                <i class="fa-solid fa-reply"></i>
+                <i class="fa-solid fa-retweet"></i>
+                <i class="fa-solid fa-heart"></i>
+            </div>
+        </footer>
+    </article>
+    `;
+};
 
-
-const createTweetElement = function(tweet) {
-  let $tweet = $("<article>");
-  $tweet.addClass("tweet")
-const $header = createTweetHeader(tweet.user);
-$tweet.append($header);
-
-
-const tweetContent = $("<p>");
-tweetContent.addClass("text");
-tweetContent.text(tweet.content.text);
-$tweet.append(tweetContent);
-const $footer = createTweetFooter(tweet["created_at"]);
-$tweet.append($footer);
-
-return $tweet;
-}
-
-
-const loadtweets = function() {
+const loadtweets = function () {
   $.ajax({
-    url:"/tweets",
-    type:"GET",
-    }).done(function(res) {
-        renderTweets(res);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error(`Error fetching tweets: ${textStatus}, ${errorThrown}`);
-  });
-}
+    url: "/tweets",
+    type: "GET",
+  })
+    .done(function (res) {
+      renderTweets(res);
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      console.error(`Error fetching tweets: ${textStatus}, ${errorThrown}`);
+    });
+};
 
-  const renderTweets = function(data) {
-        for (let tweet in data) {
-            $('#tweets-container').prepend(createTweetElement(data[tweet]));
-        }
+const renderTweets = function (data) {
+  for (let tweet in data) {
+    $("#tweets-container").prepend(createTweetElement(data[tweet]));
   }
-  
-  $(document).ready(function() { //when the dom is loaded find the ID tweet container and append the new created tweet
-    // Test / driver code (temporary)
-    // Main function to handle DOM when ready
-     loadtweets();
-    // to add it to the page so we can make sure it's got all the right elements, classes, etc.
-     // Handle form submission
-    $( "#target" ).on( "submit", function( event ) {
-        event.preventDefault();
+};
 
-        var tweetContent = $(this).find('textarea').val().trim();
-    
-        // Use the validation function
-        if (!validateTweet(tweetContent)) {
-            return; // Stop the function if tweet is invalid
-        }
+$(document).ready(function () {
+  //when the dom is loaded find the ID tweet container and append the new created tweet
+  // Test / driver code (temporary)
+  // Main function to handle DOM when ready
+  loadtweets();
+  // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  // Handle form submission
+  $("#target").on("submit", function (event) {
+    event.preventDefault();
 
+    var tweetContent = $(this).find("textarea").val().trim();
+
+    if (!tweetContent) {
+      alert("Your tweet cannot be empty.");
+      return;
+    }
+
+    if (tweetContent.length > 140) {
+      alert("Your tweet is too long. Please keep it within 140 characters.");
+      return;
+    }
     // Serialize the form data
     var formData = $(this).serialize();
 
     // Send serialized data using a POST request
-    $.post('/tweets', formData, function(response) {
-    console.log("Response from server:", response);
+    $.post("/tweets", formData, function (response) {
+      console.log("Response from server:", response);
 
-     // Fetch and render the updated tweets
-     fetchAndRenderTweets();
-        
+      $("#tweet-text").val("");
+
+      // Fetch and render the updated tweets
+      fetchAndRenderTweets();
     });
+  });
 
-    });
-
-    // Validation FUNCTION
-    function validateTweet(content) {
-        if (!content) {
-            alert("Your tweet cannot be empty.");
-            return false;
-        }
-
-        if (content.length > 140) {
-            alert("Your tweet is too long. Please keep it within 140 characters.");
-            return false;
-        }
-
-        return true;
-    }
-
-    // Function to fetch and render tweets
-    function fetchAndRenderTweets() {
-        fetch('/tweets')
-            .then(response => response.json())
-            .then(data => {
-                $('#tweets-container').empty()
-                renderTweets(data);
-            })
-            .catch(error => console.error('Error fetching tweets:', error));
-        }
+  // Function to fetch and render tweets
+  function fetchAndRenderTweets() {
+    fetch("/tweets")
+      .then((response) => response.json())
+      .then((data) => {
+        $("#tweets-container").empty();
+        renderTweets(data);
+      })
+      .catch((error) => console.error("Error fetching tweets:", error));
+  }
 });
