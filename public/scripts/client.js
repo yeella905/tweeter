@@ -64,13 +64,19 @@ $(document).ready(function () {
 
     var tweetContent = $(this).find("textarea").val().trim();
 
+    $("#error-message").slideUp();
+
     if (!tweetContent) {
-      alert("Your tweet cannot be empty.");
+        $("#error-message")
+        .text("Your tweet cannot be empty.")
+        .slideDown();
       return;
     }
 
     if (tweetContent.length > 140) {
-      alert("Your tweet is too long. Please keep it within 140 characters.");
+        $("#error-message")
+        .text("Your tweet is too long. Please keep it within 140 characters.")
+        .slideDown();
       return;
     }
     // Serialize the form data

@@ -43,5 +43,10 @@
 
 .over-limit {
     color: red;
+    
 }
 
+.new-tweet h3 {
+    color: red;
+    border: 3px solid; 
+}
