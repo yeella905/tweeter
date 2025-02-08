@@ -33,3 +33,11 @@ nav .new-tweet i {
     margin-top: 0.5em; /* Adds space between text and icon */
     margin-left: 0; /* Remove any left margin set before */
 }
+
+
+/* Tablet Styles */
+@media only screen and (max-width: 960px) {
+    nav {
+        background-color: #c7cbd3;
+    }
+}
