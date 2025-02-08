@@ -2,7 +2,13 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express back-end skills.
+This project is a full-stack web application that I developed to enhance my skills in HTML, CSS, JavaScript, jQuery, and AJAX on the front end, as well as Node.js and Express on the back end. It serves as a practical exercise in integrating these technologies to build dynamic and interactive web applications.
+
+Features
+Front-end development: Responsive UI using HTML, CSS, and JavaScript.
+Interactivity: Utilizes jQuery and AJAX for dynamic content updates.
+Back-end functionality: Built with Node.js and Express for handling server-side logic.
+API Integration: Implements AJAX calls to fetch and display data from external sources.
 
 ## Getting Started
 
@@ -14,5 +20,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Dependencies
 
+- chance
 - Express
 - Node 5.10.x or above
+- body-parser
