@@ -10,6 +10,7 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
+//html converted
 const createTweetElement = (tweet) => {
   return `
     <article class="tweet">
