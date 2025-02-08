@@ -54,7 +54,6 @@ const renderTweets = function (data) {
 
 $(document).ready(function () {
   //when the dom is loaded find the ID tweet container and append the new created tweet
-  // Test / driver code (temporary)
   // Main function to handle DOM when ready
   loadtweets();
   // to add it to the page so we can make sure it's got all the right elements, classes, etc.
@@ -67,14 +66,12 @@ $(document).ready(function () {
     $("#error-message").slideUp();
 
     if (!tweetContent) {
-        $("#error-message")
-        .text("Your tweet cannot be empty.")
-        .slideDown();
+      $("#error-message").text("Your tweet cannot be empty.").slideDown();
       return;
     }
 
     if (tweetContent.length > 140) {
-        $("#error-message")
+      $("#error-message")
         .text("Your tweet is too long. Please keep it within 140 characters.")
         .slideDown();
       return;

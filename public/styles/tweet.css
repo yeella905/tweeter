@@ -1,36 +1,33 @@
 article.tweet {
-    border: 3px solid; /* Add a border color if needed */
-    margin-top: 1em;
-    padding: 1em;
+  border: 3px solid; /* Add a border color if needed */
+  margin-top: 1em;
+  padding: 1em;
 }
 
 article.tweet:hover {
-    box-shadow: 3px 3px 5px #687294; /* Correct syntax */   
-    border: 3px solid; 
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+  box-shadow: 3px 3px 5px #687294; /* Correct syntax */
+  border: 3px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
 article.tweet header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 article.tweet header div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
-
 article.tweet footer {
-    display: flex;
-    justify-content: space-between; /* Align to the start for the avatar and name */
-    align-items: center;
+  display: flex;
+  justify-content: space-between; /* Align to the start for the avatar and name */
+  align-items: center;
 }
 
 article.tweet footer i:hover {
-    color: #4056A1;
+  color: #4056a1;
 }
-

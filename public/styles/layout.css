@@ -6,7 +6,9 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -18,7 +20,7 @@ body {
   color: #545149;
   background-color: cornsilk;
   font-size: 24px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
   padding-top: 120px;
 }
 
@@ -26,10 +28,8 @@ body {
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
 
- main {
+main {
   width: 90%;
   margin: 0 auto; /* This centers the main element horizontally */
-  background-color: inherit; /* Same as body background color just won't be hardcoded */ 
+  background-color: inherit; /* Same as body background color just won't be hardcoded */
 }
-
-
