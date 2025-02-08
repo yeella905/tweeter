@@ -24,3 +24,7 @@ API Integration: Implements AJAX calls to fetch and display data from external s
 - Express
 - Node 5.10.x or above
 - body-parser
+
+## Screenshots
+
+!["Screenshots of tweets"] (https://github.com/yeella905/tweeter/blob/c269a2652ca9e8bedd73c68968cc2413d405490b/docs/tweet-page.png)
