@@ -14,7 +14,12 @@ header.main-header {
   display: flex;
   flex-direction: row;
   gap: 1em;
+} 
+
+.tweet-container{
+   margin-right: 1em;
 }
+
 /* Tablet Styles */
 @media only screen and (max-width: 960px) {
   header.main-header {

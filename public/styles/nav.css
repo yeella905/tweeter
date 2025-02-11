@@ -34,9 +34,3 @@ nav .new-tweet i {
   margin-left: 0; /* Remove any left margin set before */
 }
 
-/* Tablet Styles */
-@media only screen and (max-width: 960px) {
-  nav {
-    background-color: #c7cbd3;
-  }
-}

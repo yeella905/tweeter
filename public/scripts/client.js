@@ -86,6 +86,8 @@ $(document).ready(function () {
 
       $("#tweet-text").val("");
 
+      const $counter = $(".new-tweet textarea").siblings().find(".counter");
+    $counter.text(140);
       // Fetch and render the updated tweets
       fetchAndRenderTweets();
     });
@@ -93,12 +95,16 @@ $(document).ready(function () {
 
   // Function to fetch and render tweets
   function fetchAndRenderTweets() {
-    fetch("/tweets")
-      .then((response) => response.json())
-      .then((data) => {
-        $("#tweets-container").empty();
-        renderTweets(data);
+    $.ajax({
+        url: "/tweets",
+        type: "GET",
       })
-      .catch((error) => console.error("Error fetching tweets:", error));
+        .done(function (res) {
+            $("#tweets-container").empty();
+          renderTweets(res);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          console.error(`Error fetching tweets: ${textStatus}, ${errorThrown}`);
+        });
   }
 });
